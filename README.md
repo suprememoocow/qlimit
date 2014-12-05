@@ -20,7 +20,7 @@ return Q.all(items.map(function(item) {
 
 Each item will then be processed in parallel. 
 
-If each execution of `performOperationOnItem` issues an HTTP request or database operation, you may find that this code quickly overwhelms the backend server, or the HTTP client times out before issuing the operation (by default the nodejs's global HTTP.Agent will issue 5 concurrent requests to any single host, the rest will be queued)
+If each execution of `performOperationOnItem` issues an HTTP request or database operation, you may find that this code quickly overwhelms the backend server, or the HTTP client times out before issuing the operation (by default the nodejs's global `HTTP.Agent` will issue 5 concurrent requests to any single host, the rest will be queued).  Too many concurrent connections may result in timeout errors though.
 
 ## Using `qlimit`
 
