@@ -58,4 +58,30 @@ describe('qlimit', function() {
 
   });
 
+  it('should allow specific services to be limited', function(done) {
+    var limit = qlimit(1);
+
+    var count = 0;
+    var totalCount = 0;
+    var limitedFunction = limit(function(c) {
+      count++;
+      totalCount++;
+      assert.strictEqual(count, 1);
+      assert.strictEqual(totalCount, c);
+      return Q.delay(10)
+        .then(function() {
+          count--;
+          assert.strictEqual(count, 0);
+        });
+    });
+
+    return Q.all([
+        limitedFunction(1),
+        limitedFunction(2),
+        limitedFunction(3)
+      ])
+      .nodeify(done);
+
+  });
+
 });
