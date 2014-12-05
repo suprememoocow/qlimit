@@ -2,6 +2,9 @@
 
 var Q = require('q');
 
+/**
+ * Create a Q-limit wrapping function
+ */
 module.exports = function qlimit(maxConcurrency) {
   var outstandingCount = 0;
   var queue = [];
