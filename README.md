@@ -42,13 +42,15 @@ return Q.all(items.map(limit(function(item) {
 var qlimit = require('qlimit');
 var limit = qlimit(2); // 2 being the maximum concurrency
 
-function fetchSomethingFromEasilyOverwhelmedBackendServer(id) {
-  return limit(function() {
-    // Emulating the backend service
-    return Q.delay(1000)
-      .thenResolve({ hello: 'world' }); 
-  });
-}
+var fetchSomethingFromEasilyOverwhelmedBackendServer = limit(function (id) {
+  // Emulating the backend service
+  return Q.delay(1000)
+    .thenResolve({ hello: 'world' });
+});
+
+var promise1 = fetchSomethingFromEasilyOverwhelmedBackendServer(1);
+var promise2 = fetchSomethingFromEasilyOverwhelmedBackendServer(2);
+
 ```
 
 In this example, calls can then be made to `fetchSomethingFromEasilyOverwhelmedBackendServer` with a
