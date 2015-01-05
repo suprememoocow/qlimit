@@ -13,5 +13,10 @@
   },
   "devDependencies": {
     "mocha": "^2.0.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/suprememoocow/qlimit.git"
+  },
+  "bugs": "https://github.com/suprememoocow/qlimit/issues",
 }
